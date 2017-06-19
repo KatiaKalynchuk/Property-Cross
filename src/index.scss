@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+.app {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: aliceblue;
+    padding: 30px;
+    font-family: 'Raleway', sans-serif;
+    color: #20624f;
+}
+
+.header {
+    text-align: center;
+    position: relative;
+
+    button {
+        background: #57d1af;
+        border: none;
+        width: 70px;
+        height: 30px;
+        border-radius: 15px;
+        color: aliceblue;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+    }
+}
+
+.main {
+    text-align: center;
+
+    input {
+        height: 35px;
+        border: solid 1px #a7c6be;
+        padding: 5px;
+        width: 100%;
+
+        &:focus {
+            outline: none;
+        }
+    }
+    ::-webkit-input-placeholder {color:#cfcfcf;
+                                 font: 'Raleway'}
+    ::-moz-placeholder          {color:#cfcfcf;
+                                 font: 'Raleway'}/* Firefox 19+ */
+    :-moz-placeholder           {color:#cfcfcf;
+                                 font: 'Raleway'}/* Firefox 18- */
+    :-ms-input-placeholder      {color:#cfcfcf;
+                                 font: 'Raleway'}
+    button {
+        background: #57d1af;
+        border: none;
+        width: 80px;
+        height: 40px;
+        border-radius: 20px;
+        color: aliceblue;
+        margin-top: 20px;
+        display: inline-block;
+        font-size: 15px;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
+    }
+    #location-btn{
+        width: 110px;
+        margin-left: 20px;
+    }
+    .list {
+        width: 100%;
+        height: 300px;
+        background-color: white;
+        margin-top: 20px;
+    }
+    label {
+        display: block;
+        text-align: left;
+        margin-top: 20px;
+    }
+
+}
