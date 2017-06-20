@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {BrowserRouter as Router, Link} from 'react-router';
 
 class List extends Component {
 
@@ -12,7 +13,7 @@ class List extends Component {
                     <img src="./../../spin.gif"></img>
                 </div>
                 <header className="list-header">
-                    <p>Property Cross</p>
+                    <p><Link to = "/"><img src="./../../back.svg"></img>Property Cross</Link></p>
                     <h2>Results</h2>
                 </header>
                 <div className = "list">

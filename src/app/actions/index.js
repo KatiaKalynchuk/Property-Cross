@@ -42,5 +42,5 @@ export function search(city) {
                console.log(error);
            });
     }
-    
+  
 }
