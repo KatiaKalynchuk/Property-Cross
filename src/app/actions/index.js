@@ -32,6 +32,10 @@ export function search(city) {
                        type: types.SEARCH,
                        peyload: text.response.listings
                    }); 
+                   dispatch({
+                       type: types.PRELOADER,
+                       peyload: false
+                   });
                })
            })
            .catch(error => {

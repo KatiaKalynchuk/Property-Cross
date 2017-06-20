@@ -1,17 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 import * as Actions from '../actions/index';
 
 class App extends Component {
     render() {
-        const {items, actions} = this.props;
+        const {items, actions, view} = this.props;
+        let children = React.Children.map(this.props.children, function (child) {
+            return React.cloneElement(child, {
+                items,
+                actions,
+                view
+            });
+        });
         return (
           <div>
-            <Header/>
-            <MainSection items={items} actions={actions}/>
+            {children}
           </div>
         );
     }
@@ -19,12 +24,14 @@ class App extends Component {
 
 App.propTypes = {
     items: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    view: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        items: state.searchList
+        items: state.searchList,
+        view: state.reduserView
     };
 }
 

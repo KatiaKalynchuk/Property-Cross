@@ -1,11 +1,6 @@
 import {SEARCH} from '../constants/ActionTypes';
 
-const initialState = [
-    {
-        id: 0,
-        title: ''
-    }
-];
+const initialState = [];
 
 export default function searchList(state = initialState, action) {
     switch (action.type) {

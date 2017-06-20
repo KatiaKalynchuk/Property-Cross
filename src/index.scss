@@ -49,7 +49,7 @@
                                  font: 'Raleway'}/* Firefox 18- */
     :-ms-input-placeholder      {color:#cfcfcf;
                                  font: 'Raleway'}
-    button {
+    .btn {
         background: #57d1af;
         border: none;
         width: 80px;
@@ -60,9 +60,15 @@
         display: inline-block;
         font-size: 15px;
         cursor: pointer;
+        line-height: 39px;
+        text-decoration: none;
 
         &:focus {
             outline: none;
+        }
+
+        &:hover {
+            text-decoration: none;
         }
     }
     #location-btn{
@@ -82,3 +88,59 @@
     }
 
 }
+.list-header{
+    text-align: center;
+    // position: relative;
+
+    h2 {
+        // position: absolute;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    p {
+        display: block;
+        text-align: left;
+        margin: 0;
+    }
+}
+
+.result-list {
+    width: 100%;
+    height: 151px;
+    border: solid 1px #a7c6be;
+    background-color: white;
+    margin-bottom: 2px;
+
+    img {
+        width: 140px;
+        height: 140px;
+        float: left;
+        margin: 5px 10px 5px 5px;
+    }
+    p {
+        line-height: 40px;
+    }
+}
+.show {
+    background: rgba(192,192,192, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    img {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 46%;
+        width: 120px;
+        height: 120px;
+        z-index: 1001;
+    }
+}
+.hide {
+    display: none;
+}
+
