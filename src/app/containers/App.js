@@ -1,17 +1,19 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+
 import MainSection from '../components/MainSection';
 import * as Actions from '../actions/index';
 
 class App extends Component {
     render() {
-        const {items, actions, view} = this.props;
+        const {items, actions, view, faves} = this.props;
         let children = React.Children.map(this.props.children, function (child) {
             return React.cloneElement(child, {
                 items,
                 actions,
-                view
+                view,
+                faves
             });
         });
         return (
@@ -25,13 +27,15 @@ class App extends Component {
 App.propTypes = {
     items: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
-    view: PropTypes.array.isRequired
+    view: PropTypes.object.isRequired,
+    faves: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        items: state.searchList,
-        view: state.reduserView
+        items: state.reducerData.searchData,
+        faves: state.reducerData.favesData,
+        view: state.reducerView
     };
 }
 
