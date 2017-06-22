@@ -13,18 +13,45 @@
 .header {
     text-align: center;
     position: relative;
-
-    button {
+    
+    .btn-faves {
         background: #57d1af;
         border: none;
+        border: 1px solid #57d1af;
         width: 70px;
         height: 30px;
         border-radius: 15px;
         color: aliceblue;
+        text-decoration: none;
+        font-size: 15px;
+        line-height: 26px;
         position: absolute;
         top: 0;
         right: 0;
         cursor: pointer;
+        transition: all 0.5s;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 1);
+            border: solid 1px #57d1af;
+            color: #57d1af;
+        }
+    }
+
+    .btn-star {
+        font-size: 30px;
+        line-height: 0px;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px
+    }
+
+    .prop-details h2 {
+        display: inline-block;
     }
 }
 
@@ -52,6 +79,7 @@
     .btn {
         background: #57d1af;
         border: none;
+        border: 1px solid #57d1af;
         width: 80px;
         height: 40px;
         border-radius: 20px;
@@ -62,6 +90,7 @@
         cursor: pointer;
         line-height: 39px;
         text-decoration: none;
+        transition: all 0.5s;
 
         &:focus {
             outline: none;
@@ -69,6 +98,9 @@
 
         &:hover {
             text-decoration: none;
+            background-color: rgba(255, 255, 255, 1);
+            border: solid 1px #57d1af;
+            color: #57d1af;
         }
     }
     #location-btn{
@@ -129,6 +161,12 @@
     }
     p {
         line-height: 40px;
+        
+        a {
+            text-decoration: none;
+            color: #20624f;
+
+        }
     }
 }
 .show {
@@ -139,6 +177,7 @@
     width: 100%;
     height: 100%;
     z-index: 1000;
+
     img {
         display: block;
         position: relative;
@@ -151,5 +190,30 @@
 }
 .hide {
     display: none;
+}
+
+.details-info {
+    .title {
+        font-weight: bold;
+    }
+    img {
+        width: 100%;
+    }
+}
+.details .header {
+        p {
+        display: block;
+        text-align: left;
+        margin: 0;
+
+        img {
+            width: 13px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #20624f;
+        }
+    }
 }
 
