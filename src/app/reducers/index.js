@@ -1,10 +1,11 @@
 import {combineReducers} from 'redux';
-import searchList from './searchList';
-import reduserView from './reduserView';
+
+import reducerData from './reducerData';
+import reducerView from './reducerView';
 
 const rootReducer = combineReducers({
-    searchList,
-    reduserView
+    reducerData,
+    reducerView
 });
 
 export default rootReducer;
