@@ -18,7 +18,7 @@ module.exports = {
         "curly": ["error", "all"],
         "quotes": [2, "single", {"avoidEscape": true,"allowTemplateLiterals": true}],
         "new-cap": [2, { "capIsNewExceptions": ["List", "Map", "Set", "Counterpart"] }],
-        "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+        "no-unused-vars": [0, {"vars": "all", "args": "none"}],
         "indent": [2],
         "react/prop-types": [2, { "ignore": ["children"]}],
         "react/jsx-indent-props": [2,2],

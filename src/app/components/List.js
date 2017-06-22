@@ -1,30 +1,34 @@
 import React, {Component, PropTypes} from 'react';
-import {BrowserRouter as Router, Link} from 'react-router';
+import shortid from 'shortid';
+import {Link} from 'react-router';
+
+import Item from './item';
 
 class List extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            path: '/list'
+        }
+    }
 
     render() {
         const {items, view} = this.props;
-        console.log(view.preloader)
-        console.log(items);
         return (
             <div className="result-page">
                 <div className={view.preloader ? 'show' : 'hide'}>
                     <img src="./../../spin.gif"></img>
                 </div>
                 <header className="list-header">
-                    <p><Link to = "/"><img src="./../../back.svg"></img>Property Cross</Link></p>
+                    <p><Link to="/"><img src="./../../back.svg"></img>Property Cross</Link></p>
                     <h2>Results</h2>
                 </header>
+
                 <div className = "list">
                     {
-                        items.map(item => {
+                        items.map((item) => {
                             return (
-                                <div key = {item.title.toString()} className="result-list">
-                                    <img src={item.img_url}></img>
-                                    <p>{item.price_formatted}</p>
-                                    <p>{item.title}</p>
-                                </div>
+                                <Item item={item} key={shortid.generate()} path={this.state.path}/>
                             )
                         })
                     }
@@ -36,7 +40,7 @@ class List extends Component {
 
 List.propTypes = {
     items: PropTypes.array.isRequired,
-    view: PropTypes.array.isRequired
+    view: PropTypes.object.isRequired
 };
 
 export default List;
