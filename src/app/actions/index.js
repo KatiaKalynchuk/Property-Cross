@@ -1,5 +1,6 @@
-import * as types from '../constants/ActionTypes';
 import fetchJsonp from 'fetch-jsonp';
+
+import * as types from '../constants/ActionTypes';
 
 function urlForQueryAndPage(name, value, pageNumber) {
     let data = {
@@ -30,17 +31,24 @@ export function search(city) {
                data.json().then(text => { 
                    dispatch({
                        type: types.SEARCH,
-                       peyload: text.response.listings
+                       payload: text.response.listings
                    }); 
                    dispatch({
                        type: types.PRELOADER,
-                       peyload: false
+                       payload: false
                    });
                })
            })
            .catch(error => {
-               console.log(error);
+               dispatch({
+                   type: types.ERROR,
+                   payload: error
+               }); 
            });
     }
   
+}
+
+export function addFaves (data) {
+    return {type: types.ADD_TO_FAVES, payload: data}
 }
