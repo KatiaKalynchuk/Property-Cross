@@ -1,18 +1,18 @@
 import {PRELOADER, ERROR} from '../constants/ActionTypes';
 
 const initialState = {
-    preloader: true,
-    error: ''
+    preloader: false,
+    error: null
 }
 
 export default function reducerView(state = initialState, action) {
     switch (action.type) {
     case PRELOADER:
-        return {
+        return Object.assign({}, state, {
             preloader: action.payload
-        }
+        });
+
     case ERROR:
-        console.log(action.payload);
         return Object.assign({}, state, {
             error: action.payload
         });
