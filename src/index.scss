@@ -42,6 +42,12 @@
         }
     }
 
+    .active {
+        background-color: white;
+        border: solid 1px #57d1af;
+        color: #57d1af;
+    }
+
     .btn-star {
         font-size: 30px;
         line-height: 0px;
