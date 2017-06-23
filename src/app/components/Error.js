@@ -1,18 +1,19 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 const Error = ({error}) => {
     return (
         <div className="wrap-error">
-            <label>Error</label>
-            <div className = "error">
+            <label>Error:</label>
+            <span className = "error">
                 {error} 
-            </div>
+            </span>
         </div>
     );
 }
 
 Error.propTypes = {
-    error: PropTypes.string.isRequired
+    error: PropTypes.string
 };
 
 export default Error;

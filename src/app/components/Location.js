@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 const Locations = ({locations, searchLocation}) => {
@@ -12,7 +13,6 @@ const Locations = ({locations, searchLocation}) => {
             <div className = "list">
             {
                 locations.map((item) => {
-                    console.log(item.title)
                     return <button onClick={setSearch} key={shortid.generate()}>{item.title}</button>
                 })
             }   

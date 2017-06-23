@@ -35,28 +35,20 @@ export function search(city) {
            }).then(text => {
                const unkLocation = 'unknown location';
                if(text.response.application_response_text != unkLocation) { 
-                   dispatch({
-                       type: types.SEARCH,
-                       payload: text.response.listings
-                   }); 
-                   dispatch({
-                       type: types.ERROR,
-                       payload: ''
-                   }); 
+                   dispatch({type: types.SEARCH,payload: text.response.listings}); 
+                   dispatch({type: types.ERROR,payload: ''}); 
                    dispatch({type: types.PRELOADER, payload: false})
+                   dispatch({type: types.RECENT_SEARCHES, payload: city})
+                   
                } else {
-                   dispatch({
-                       type: types.ERROR,
-                       payload: 'unknown location'
+                   dispatch({type: types.ERROR,payload: 'Unknown location'
                    });
+                   dispatch({type: types.LOCATION,payload: []}); 
                    dispatch({type: types.PRELOADER, payload: false})
                }
            })
            .catch(error => {
-               dispatch({
-                   type: types.ERROR,
-                   payload: error
-               }); 
+               dispatch({type: types.ERROR,payload: error}); 
            });
     }
 }
@@ -69,11 +61,9 @@ export function getLocation () {
            .then((data)=> {
                return data.json();
            }).then(text => { 
-               dispatch({
-                   type: types.LOCATION,
-                   payload: text.response.locations
-               }); 
-               dispatch({type: types.PRELOADER, payload:false})
+               dispatch({type: types.LOCATION,payload: text.response.locations}); 
+               dispatch({type: types.ERROR,payload: ''}); 
+               dispatch({type: types.PRELOADER, payload: false})
            })
     }
 }
@@ -87,8 +77,4 @@ export function removeFaves (data) {
 
 export function preloader (data) {
     return {type: types.PRELOADER, payload: data}
-}
-
-export function recentSearches (data) {
-    return {type: types.RECENT_SEARCHES, payload: data}
 }

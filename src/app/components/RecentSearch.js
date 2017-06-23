@@ -1,14 +1,15 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 const RecentSearches = ({recSearches}) => {
-    console.log(recSearches)
     return (
         <div className="wrap-location">
-            <label>Locations:</label>
+            <label>Recent Searches:</label>
             <div className = "list">
             {
                 recSearches.map((item) => {
-                    return <p>{item}</p>
+                    return <p key={shortid.generate()}>{item.toLowerCase()}</p>
                 })
             }   
             </div>
