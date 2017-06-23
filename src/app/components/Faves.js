@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import {Link} from 'react-router';
 
@@ -34,7 +35,7 @@ class Faves extends Component {
 }
 
 Faves.propTypes = {
-    faves: PropTypes.array.isRequired
+    faves: PropTypes.array
 };
 
 export default Faves;

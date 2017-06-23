@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import {Link} from 'react-router';
 
@@ -29,7 +30,7 @@ class List extends Component {
 }
 
 List.propTypes = {
-    items: PropTypes.array.isRequired
+    items: PropTypes.array
 };
 
 export default List;
