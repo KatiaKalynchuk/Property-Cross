@@ -7,14 +7,9 @@ import * as Actions from '../actions/index';
 
 class App extends Component {
     render() {
-        const {items, actions, view, faves} = this.props;
+        const {items, actions, view, faves, locations, recSearches} = this.props;
         let children = React.Children.map(this.props.children, function (child) {
-            return React.cloneElement(child, {
-                items,
-                actions,
-                view,
-                faves
-            });
+            return React.cloneElement(child, {items,actions,view,faves,locations,recSearches});
         });
         return (
           <div>
@@ -28,14 +23,18 @@ App.propTypes = {
     items: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     view: PropTypes.object.isRequired,
-    faves: PropTypes.array.isRequired
+    faves: PropTypes.array.isRequired,
+    locations: PropTypes.array.isRequired,
+    recSearches: PropTypes.array
 };
 
 function mapStateToProps(state) {
     return {
         items: state.reducerData.searchData,
         faves: state.reducerData.favesData,
-        view: state.reducerView
+        view: state.reducerView,
+        locations: state.reducerData.locationData,
+        recSearches: state.reducerData.recentSearches
     };
 }
 
