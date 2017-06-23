@@ -73,7 +73,7 @@ export function getLocation () {
                    type: types.LOCATION,
                    payload: text.response.locations
                }); 
-               dispatch({type: types.PRELOADER, payload: false})
+               dispatch({type: types.PRELOADER, payload:false})
            })
     }
 }
