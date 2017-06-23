@@ -25,19 +25,32 @@ export function search(city) {
     let url = urlForQueryAndPage('place_name', city, 1);
 
     return (dispatch) => {
-
+        dispatch({
+            type: types.ERROR,
+            payload: null
+        }); 
         fetchJsonp(url)
            .then((data)=> {
-               data.json().then(text => { 
+               return data.json();
+           }).then(text => {
+               const unkLocation = 'unknown location';
+               if(text.response.application_response_text != unkLocation) { 
                    dispatch({
                        type: types.SEARCH,
                        payload: text.response.listings
                    }); 
                    dispatch({
-                       type: types.PRELOADER,
-                       payload: false
+                       type: types.ERROR,
+                       payload: ''
+                   }); 
+                   dispatch({type: types.PRELOADER, payload: false})
+               } else {
+                   dispatch({
+                       type: types.ERROR,
+                       payload: 'unknown location'
                    });
-               })
+                   dispatch({type: types.PRELOADER, payload: false})
+               }
            })
            .catch(error => {
                dispatch({
@@ -46,9 +59,36 @@ export function search(city) {
                }); 
            });
     }
-  
+}
+
+export function getLocation () {
+    let url = urlForQueryAndPage('place_name', 'london', 1);
+
+    return (dispatch) => { 
+        fetchJsonp(url)
+           .then((data)=> {
+               return data.json();
+           }).then(text => { 
+               dispatch({
+                   type: types.LOCATION,
+                   payload: text.response.locations
+               }); 
+               dispatch({type: types.PRELOADER, payload: false})
+           })
+    }
 }
 
 export function addFaves (data) {
     return {type: types.ADD_TO_FAVES, payload: data}
+}
+export function removeFaves (data) {
+    return {type: types.REMOVE_FROM_FAVES, payload: data}
+}
+
+export function preloader (data) {
+    return {type: types.PRELOADER, payload: data}
+}
+
+export function recentSearches (data) {
+    return {type: types.RECENT_SEARCHES, payload: data}
 }
