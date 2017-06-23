@@ -4,10 +4,28 @@ import {connect} from 'react-redux';
 
 const Details = (props) => {
 
-    const {view, item, actions} = props;
+    const {view, item, actions, favesItems} = props;
 
     const addToFaves = () => {
-        actions.addFaves(item)
+        if(!favesItems.length) {
+            actions.addFaves(item)
+        } else {
+            if(!hasFaves()) {
+                actions.addFaves(item);
+            } else {
+                actions.removeFaves(item);
+            }
+        }
+    }
+
+    const hasFaves = () => {
+        const items = favesItems.find(x => {
+            return x.latitude === item.latitude;
+        })
+        if(items) {
+            return true;
+        }
+        return false;
     }
 
     return (
@@ -15,7 +33,9 @@ const Details = (props) => {
             <header className="header">
                 <p><Link to="/list"><img src="./../../back.svg"/>Back</Link></p>
                 <h2>Property Details</h2>
-                <button className="btn-star btn-faves" onClick={addToFaves}>&#x2605;</button>
+                <button className={`btn-star btn-faves ${hasFaves() ? 'active' : ''}`}
+                  onClick={addToFaves}>&#x2605;
+                 </button>
             </header>
             <div className="details-info">
                 <p>{item.price_formatted}</p>
@@ -29,9 +49,10 @@ const Details = (props) => {
 }
 
 Details.propTypes = {
-    actions: PropTypes.object.isRequired,
-    view: PropTypes.object.isRequired,
-    item: PropTypes.number.isRequired
+    actions: PropTypes.object,
+    view: PropTypes.object,
+    item: PropTypes.number,
+    favesItems: PropTypes.array
 };
 
 function mapStateToProps(state, own_props) {
@@ -39,7 +60,8 @@ function mapStateToProps(state, own_props) {
         return Number(x.latitude) === Number(own_props.params.id);
     }) || {};
     return {
-        item: item
+        item: item,
+        favesItems: state.reducerData.favesData
     };
 }
 
