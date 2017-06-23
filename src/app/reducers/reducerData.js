@@ -11,6 +11,7 @@ export default function reducerData(state = initialState, action) {
     switch (action.type) {
     case SEARCH:
         return Object.assign({}, state, {
+            locationData: [],
             searchData: action.payload
         });
 
@@ -28,11 +29,13 @@ export default function reducerData(state = initialState, action) {
 
     case LOCATION:
         return Object.assign({}, state, {
-            locationData: [...action.payload]
+            locationData: [...action.payload],
+            searchData: []
         });
 
     case RECENT_SEARCHES: 
         return Object.assign({}, state, {
+            locationData: [],
             recentSearches: [...state.recentSearches, action.payload] 
         });   
 

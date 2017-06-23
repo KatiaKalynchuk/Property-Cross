@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
@@ -51,7 +52,7 @@ const Details = (props) => {
 Details.propTypes = {
     actions: PropTypes.object,
     view: PropTypes.object,
-    item: PropTypes.number,
+    item: PropTypes.object,
     favesItems: PropTypes.array
 };
 
