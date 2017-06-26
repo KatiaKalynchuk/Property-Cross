@@ -26,8 +26,7 @@ export function search(city) {
 
     return (dispatch) => {
         dispatch({
-            type: types.ERROR,
-            payload: null
+            type: types.SEARCH_REQUEST
         }); 
         fetchJsonp(url)
            .then((data)=> {
@@ -35,35 +34,35 @@ export function search(city) {
            }).then(text => {
                const unkLocation = 'unknown location';
                if(text.response.application_response_text != unkLocation) { 
-                   dispatch({type: types.SEARCH,payload: text.response.listings}); 
-                   dispatch({type: types.ERROR,payload: ''}); 
-                   dispatch({type: types.PRELOADER, payload: false})
+                   dispatch({type: types.SEARCH_SUCCESS, payload: text.response.listings}); 
                    dispatch({type: types.RECENT_SEARCHES, payload: city})
                    
                } else {
-                   dispatch({type: types.ERROR,payload: 'Unknown location'
+                   dispatch({type: types.SEARCH_FAILURE,payload: 'Unknown location'
                    });
-                   dispatch({type: types.LOCATION,payload: []}); 
-                   dispatch({type: types.PRELOADER, payload: false})
                }
            })
            .catch(error => {
-               dispatch({type: types.ERROR,payload: error}); 
+               dispatch({type: types.SEARCH_FAILURE,payload: error}); 
            });
     }
 }
 
 export function getLocation () {
-    let url = urlForQueryAndPage('place_name', 'london', 1);
-
+    let url = 'http://59502e6dce332e0011693bab.mockapi.io/location';
+    
     return (dispatch) => { 
-        fetchJsonp(url)
+        dispatch({
+            type: types.LOCATION_REQUEST
+        }); 
+        fetch(url)
            .then((data)=> {
                return data.json();
            }).then(text => { 
-               dispatch({type: types.LOCATION,payload: text.response.locations}); 
-               dispatch({type: types.ERROR,payload: ''}); 
-               dispatch({type: types.PRELOADER, payload: false})
+               dispatch({
+                   type: types.LOCATION_SUCCESS,
+                   payload: text
+               }); 
            })
     }
 }
