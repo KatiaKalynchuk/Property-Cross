@@ -1,7 +1,16 @@
-export const SEARCH = 'SEARCH';
+export const SEARCH_REQUEST = 'SEARCH_REQUEST';
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+export const SEARCH_FAILURE = 'SEARCH_FAILURE';
+
+export const LOCATION_REQUEST = 'LOCATION_REQUEST';
+export const LOCATION_SUCCESS = 'LOCATION_SUCCESS';
+export const LOCATION_FAILURE = 'LOCATION_FAILURE';
+
 export const PRELOADER = 'PRELOADER';
 export const ERROR = 'ERROR';
+
 export const ADD_TO_FAVES = 'ADD_TO_FAVES';
-export const LOCATION = 'LOCATION';
 export const REMOVE_FROM_FAVES = 'REMOVE_TO_FAVES';
+
+export const LOCATION = 'LOCATION';
 export const RECENT_SEARCHES = 'RECENT_SEARCHES';
