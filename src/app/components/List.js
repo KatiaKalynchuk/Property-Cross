@@ -7,7 +7,7 @@ import Item from './item';
 
 class List extends Component {
     render() {
-        const {items} = this.props;
+        const {data} = this.props;
         return (
             <div className="result-page">
                 <header className="list-header">
@@ -17,7 +17,7 @@ class List extends Component {
 
                 <div className = "list">
                     {
-                        items.map((item) => {
+                        data.searchData.map((item) => {
                             return (
                                 <Item item={item} key={shortid.generate()}/>
                             )
@@ -30,7 +30,7 @@ class List extends Component {
 }
 
 List.propTypes = {
-    items: PropTypes.array
+    data: PropTypes.object
 };
 
 export default List;

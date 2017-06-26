@@ -14,19 +14,25 @@ class MainSection extends Component {
         super(props);
     }
     shouldComponentUpdate(nextProps) {
-        if(nextProps.view.error === '' &&  nextProps.items.length !== 0) {
+        if(nextProps.data.error === '' &&  nextProps.data.searchData.length !== 0) {
+            
             this.props.router.push('/List');
         }
         
         return true;
     }
     render() {
-        const {items, view, locations, recSearches} = this.props;
-        let error = '';
+        const preloader = this.props.data.preloader;
+        const error = this.props.data.error;
+        const items = this.props.data.searchData;
+        const {locations, recSearches} = this.props;
+
         const searchListings = (e) => {
-            this.props.actions.search(this.searchInput.value);
-            this.props.actions.preloader(true);
-            this.searchInput.value = '';
+            if(this.searchInput.value) {
+                this.props.actions.search(this.searchInput.value);
+                this.props.actions.preloader(true);
+                this.searchInput.value = '';
+            }
         }
 
         const searchLocation = (location) => {
@@ -40,13 +46,11 @@ class MainSection extends Component {
 
         let searches = <RecentSearch recSearches={recSearches}/>;
 
-
-        
         if(recSearches.length) {
             searches = <RecentSearch recSearches={recSearches}/>;
         }
-        if(view.error) {
-            searches = <Error error={view.error}/>;
+        if(error) {
+            searches = <Error error={error}/>;
         }
         if (locations.length) {
             searches = <Location locations={locations} searchLocation={searchLocation}/>;
@@ -55,14 +59,13 @@ class MainSection extends Component {
         return (
           <div className="main">
                 <Header/>
-                <div className={view.preloader ? 'show' : 'hide'}>
+                <div className={preloader ? 'show' : 'hide'}>
                     <img src="./../../spin.gif"></img>
                 </div>
                 <section className="main">
                     <input placeholder = "Enter your location" ref={(input) => {this.searchInput = input;}}/>
                     <button className="btn" onClick={searchListings}>Go</button>
                     <button className="btn" id="location-btn" onClick={getLocations}>My location</button>
-                    {error}
                     {searches}
                 </section>
           </div>
@@ -71,12 +74,14 @@ class MainSection extends Component {
 }
 
 MainSection.propTypes = {
+    data: PropTypes.object,
     items: PropTypes.array,
     actions: PropTypes.object,
-    view: PropTypes.object,
     router: PropTypes.object,
     locations: PropTypes.array,
-    recSearches: PropTypes.array
+    recSearches: PropTypes.array,
+    preloader: PropTypes.bool,
+    error: PropTypes.any
 };
 
 export default MainSection;
