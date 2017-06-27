@@ -57,12 +57,12 @@ Details.propTypes = {
 };
 
 function mapStateToProps(state, own_props) {
-    const item = state.reducerData.searchData.find(x => {
+    const item = state.reducer.searchData.find(x => {
         return Number(x.latitude) === Number(own_props.params.id);
     }) || {};
     return {
         item: item,
-        favesItems: state.reducerData.favesData
+        favesItems: state.reducer.favesData
     };
 }
 
