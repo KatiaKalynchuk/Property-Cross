@@ -6,21 +6,23 @@ const initialState = {
     locationData: [],
     recentSearches: [],
     preloader: false,
+    search_url: '',
     error: ''
 };
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
 
-    case types.SEARCH_REQUEST: 
+    case types.REQUEST: 
     case types.LOCATION_REQUEST:
         return Object.assign({}, state, {
             searchData: [],
             locationData: [],
-            preloader: true
+            preloader: true,
+            search_url: action.url
         });
 
-    case types.SEARCH_SUCCESS:
+    case types.SUCCESS:
         return Object.assign({}, state, {
             locationData: [],
             searchData: action.payload,
@@ -28,7 +30,7 @@ export default function reducer(state = initialState, action) {
             error: ''
         });
 
-    case types.SEARCH_FAILURE:
+    case types.FAILURE:
     case types.LOCATION_FAILURE:
         return Object.assign({}, state, {
             error: action.payload,

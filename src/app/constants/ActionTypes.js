@@ -14,3 +14,7 @@ export const REMOVE_FROM_FAVES = 'REMOVE_TO_FAVES';
 
 export const LOCATION = 'LOCATION';
 export const RECENT_SEARCHES = 'RECENT_SEARCHES';
+
+export const REQUEST = 'SEARCH_REQUEST';
+export const SUCCESS = 'SEARCH_SUCCESS';
+export const FAILURE = 'SEARCH_FAILURE';

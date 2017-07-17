@@ -1,13 +1,13 @@
 import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
 
 import rootReducer from '../reducers/index';
+import {requestApi, requestLocation} from '../middleware/index';
 
 export default function configureStore(initialState) {
     const store = createStore(
         rootReducer,
         initialState,
-        applyMiddleware(thunk)
+        applyMiddleware(requestApi, requestLocation)
     );
     /*eslint-disable */
     if (module.hot) {
